@@ -759,6 +759,10 @@ p {
   color: black;
   font-size: 23px;
 }
+.send-button:hover {
+  cursor: hand;
+  background: red;
+}
 .message-input {
   position: relative;
   left: 10px;
@@ -938,6 +942,10 @@ p {
   color: white;
   font-size: 25px;
   text-decoration: none;
+}
+.exitbutton:hover{
+	background-color : #4dbd90 ;
+	font-size : 40px;
 }
 .buttonblock {
   position: absolute;
