@@ -67,7 +67,7 @@ p {
 }
 .button {
   display: inline-block;
-  margin-top: 100px;
+  /* margin-top: 100px; */
   margin-right: 14px;
   padding: 13px 23px;
   float: none;
@@ -437,7 +437,7 @@ p {
   width : auto;
   height : auto;
   margin: 0px auto;
-  padding: 420px 420px 146px;
+  padding: 200px;
   float: none;
   clear: left;
   background-color: transparent;
@@ -446,9 +446,9 @@ p {
   background-position: 0% 0%, 99% 102%;
 }
 .main-container {
-  position: absolute;
+  position: relative;
   left: 0px;
-  top: 250px;
+  /* top: 250px; */
   right: 0px;
   margin-top: 0px;
   padding-top: 0px;
@@ -756,6 +756,7 @@ p {
   border-radius: 11px;
   background-color: #4dbd90;
   font-family: Montserrat, sans-serif;
+  transition: background-color 300ms ease  ;
   color: black;
   font-size: 23px;
 }
@@ -942,10 +943,11 @@ p {
   color: white;
   font-size: 25px;
   text-decoration: none;
+  transition: background-color 400ms ease , transform 500ms ease ;
 }
 .exitbutton:hover{
 	background-color : #4dbd90 ;
-	font-size : 40px;
+	font-size : 28px;
 }
 .buttonblock {
   position: absolute;
