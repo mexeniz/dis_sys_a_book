@@ -25,14 +25,7 @@ var numUsers = 0;
 io.on('connection', function (socket) {
   var login = false;
   var socketID = "" ;
-  // when the client emits 'new message', this listens and executes
-  socket.on('chat message', function (data) {
-    // we tell the client to execute 'new message'
-    socket.broadcast.emit('new message', {
-      username: socket.username,
-      message: data
-    });
-  });
+  
   // when the client emits 'add user', this listens and executes
   socket.on('log in', function (username,callbackResponseCode) {
     // we store the username in the socket session for this client
@@ -113,6 +106,7 @@ io.on('connection', function (socket) {
 			callbackList(undefined);
 		}
   }); 
+  // when the client emits 'new message', this listens and executes
   socket.on('chat message', function(user,gID,msg){
     console.log('socket.on(chat message) is called' + msg + " " + user + " " + gID + " gName " + groupList[gID].name);
     if(gID < 0 || gID >= groupList.length) return;
@@ -127,18 +121,7 @@ io.on('connection', function (socket) {
     groupList[gID].messageList[groupList[gID].messageList.length] = newMessage ;
 	io.to(groupList[gID].name).emit('chat message', newMessage);
   });
-  socket.on('typing', function () {
-    socket.broadcast.emit('typing', {
-      username: socket.username
-    });
-  });
 
-  // when the client emits 'stop typing', we broadcast it to others
-  socket.on('stop typing', function () {
-    socket.broadcast.emit('stop typing', {
-      username: socket.username
-    });
-  });
 
   // when the user disconnects.. perform this
   socket.on('disconnect', function () {
