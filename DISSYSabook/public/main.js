@@ -185,11 +185,11 @@ $(function() {
   	    var newGroupName = $('#chatroomName').val() ;
         socket.emit('new group',newGroupName,function(isValid){
 			if(isValid){
-				alert('Create Group ' + newGroupName + 'Successfully');
+				alert('Create Group ' + newGroupName + ' Successfully');
 				getGroupList() ;
 			}
 			else{
-				alert('Create Group ' + newGroupName + 'Fail!');
+				alert('Create Group ' + newGroupName + ' Fail!');
 			}
 			});
 	}
@@ -235,9 +235,15 @@ $(function() {
 				") :</strong> " + message.message+"</li>");*/
 			count++;
 	  }
-	  console.log(username + " have unread " + count + "messages .");
-	  if (count >0 ) $('#messageList').append('<li class="message-value"> Unread '+ count +' Messagese </li>'); 
-	  }
+	  console.log(username + " have unread " + count + "message .");
+	  if (count >0 ) $('#messageList').append('<li class="message-count"> Unread '+ count +' Messages </li>'); 
+	  else if (count == 1) $('#messageList').append('<li class="message-count id="count"> Unread '+ count +' Messages </li>');
+	  setTimeout(function(){ 
+	  		$("#count").hide();
+	  	 	console.log('Time ouT!');
+	  	 }, 3000);
+	   
+	 } 
   }
   function createChatMemberList(memberList){
 	  $("#memberList").empty();

@@ -92,12 +92,14 @@ io.on('connection', function (socket) {
 			console.log(username + " enter group " + gID);
 			var joined = false ;
 			for(i = 0 ; i < groupList[gID].memberList.length ; i++){
-				if (groupList[gID].memberList[i].username == username) joined = true ;
+				if (groupList[gID].memberList[i].username == username+" [EXIT]"){ joined = true ;
+					groupList[gID].memberList[i].username = username ;
+				}
 			}
 			//enter this group first time 
 			if(!joined) groupList[gID].memberList.push({username :username , nextMessage : groupList[gID].messageList.length}) ;
-			
-			io.to(gID).emit('upadate member',groupList[gID].memberList);
+			 
+			io.to(groupList[gID].name).emit('upadate member',groupList[gID].memberList);
 			socket.leave("_LOBBY_");
 			socket.join(groupList[gID].name) ;
 			callbackGroup(groupList[gID]);
@@ -144,7 +146,7 @@ io.on('connection', function (socket) {
 	}
     //io.to(socket.id).emit('exit', usr);
     if (gID != -1 ){ socket.leave(groupList[gID].name); // SOCKET ROOM
-		io.to(gID).emit('upadate member',groupList[gID].memberList);
+		io.to(groupList[gID].name).emit('upadate member',groupList[gID].memberList);
 	}
   });
   socket.on('leave', function(usr,gID){
@@ -163,7 +165,10 @@ io.on('connection', function (socket) {
     console.log('socket.on(exit) is called' + usr + " " + gID);
     if(gID == -1) return;
     for(i=0;i < groupList[gID].memberList.length;i++){
-      if(usr == groupList[gID].memberList[i].username) groupList[gID].memberList[i].nextMessage = groupList[gID].messageList.length;
+      if(usr == groupList[gID].memberList[i].username){ 
+      	groupList[gID].memberList[i].nextMessage = groupList[gID].messageList.length;
+    	groupList[gID].memberList[i].username = groupList[gID].memberList[i].username+" [EXIT]";
+    }
     }
     //io.to(socket.id).emit('exit', usr);
     socket.leave(groupList[gID].name); // SOCKET ROOM

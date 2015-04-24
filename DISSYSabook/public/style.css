@@ -622,6 +622,12 @@ p {
   color: black;
   font-size: 20px;
   text-align: left;
+}.message-count {
+  width: 1000px;
+  height: 35px;
+  color: gray;
+  font-size: 20px;
+  text-align: left;
 }
 .chatroom-top {
   position: absolute;
@@ -759,10 +765,6 @@ p {
   transition: background-color 300ms ease  ;
   color: black;
   font-size: 23px;
-}
-.send-button:hover {
-  cursor: hand;
-  background: red;
 }
 .message-input {
   position: relative;
@@ -949,7 +951,7 @@ p {
 	background-color : #4dbd90 ;
 	font-size : 28px;
 }
-.buttonblock {
+.buttonBlock {
   position: absolute;
   top: 114px;
   right: 12px;
